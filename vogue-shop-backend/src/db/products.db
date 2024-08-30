@@ -1,0 +1,20 @@
+[
+  {
+    "id": "870f9b09-2410-473f-a73b-bf23f4e462fa",
+    "name": "Test name",
+    "description": "Test description",
+    "pictureUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTu4GiTWhqgztYOLIyyaZgGe0F-ehpcOF881JrVaWU5bgqqQ_KN91v3WHRwr6fyNyJ0NGON9qixiPSWifOj_3IGS2hUrZsBoxWEqManl15dAKE7irll2uioAQ&usqp=CAc",
+    "price": "100",
+    "brand": "Shoes",
+    "type": "Ziv"
+  },
+  {
+    "id": "870f9b09-2410-473f-a73b-bf23f4e462fa",
+    "name": "Test name",
+    "description": "Test description",
+    "pictureUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTu4GiTWhqgztYOLIyyaZgGe0F-ehpcOF881JrVaWU5bgqqQ_KN91v3WHRwr6fyNyJ0NGON9qixiPSWifOj_3IGS2hUrZsBoxWEqManl15dAKE7irll2uioAQ&usqp=CAc",
+    "price": "100",
+    "brand": "Shoes",
+    "type": "Ziv"
+  }
+]

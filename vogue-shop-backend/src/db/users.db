@@ -1,0 +1,18 @@
+[
+  {
+    "username": "admin",
+    "email": "vgsadmin@gmail.com",
+    "name": "admin",
+    "password": "JDJiJDEwJFFCRkFMSlZKWllObmpvQ0N5YjJQL3VSVkxHR3l2Mmozam5vMHF1LkdXSURsV1dKMm5sQUVx",
+    "salt": "JDJiJDEwJFFCRkFMSlZKWllObmpvQ0N5YjJQL3U=",
+    "isAdmin": true
+  },
+  {
+    "username": "darlevy",
+    "email": "Dar Levy",
+    "name": "dar@gmail.com",
+    "password": "JDJiJDEwJFZKUnJlUWZ1R1lZZkhvVXNhT0kvOE9lRXVFYWEvYmFkNVV5dzVNUWIyYUNBRXRBYXRtZ2hP",
+    "salt": "JDJiJDEwJFZKUnJlUWZ1R1lZZkhvVXNhT0kvOE8=",
+    "isAdmin": false
+  }
+]
