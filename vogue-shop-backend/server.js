@@ -37,9 +37,8 @@ app.get('/api/basket', (req, res) => {
     return res.json(user.cart);
 });
 
-app.post('/api/basket', (req, res) => {
-
-    let { product_id, quantity } = req.body;
+app.post('/api/basket/:id', (req, res) => {
+    const product_id = req.params.id;
 
     let index = rsrc.users_activity_info.findIndex(u => u.username === req.cookies.username);
     if (index == -1) {
