@@ -5,12 +5,18 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const multer = require('multer');
+const cors = require('cors');
+const rate_limiter = require('express-rate-limit');
 const port = 3000;
 const app = express();
 
-const cors = require('cors');
-app.use(cors({origin: true, credentials: true}));
-//const users_credentials_db_path = 'src/db/users.db';
+// Limiting the amount of requests per IP address to 100 in 3 minutes, to prevent from DDOS attacks
+const limiter = rate_limiter({
+    windowMs: 3 * 60 *1000, // 3 Minutes
+    max: 100,
+    message: "Too many requests from this IP. Please try again in a few minutes."
+});
+app.use(cors({origin: true, credentials: true}), limiter);
 
 const login = require('./src/js_modules/login.js');
 const register = require('./src/js_modules/register.js');
