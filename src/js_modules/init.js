@@ -54,6 +54,16 @@ async function loadDBs() {
     if (rsrc.products_list.length > 0) {
         rsrc.next_product_id = rsrc.products_list[rsrc.products_list.length - 1];
     }
+
+    // find the max cart_id in the rsrc.users_activity_info and set the next_cart_id to it
+    let max_cart_id = 0;
+    rsrc.users_activity_info.forEach((user) => {
+        if (max_cart_id < user.cart.id) {
+            max_cart_id = user.cart.id;
+        }
+    });
+    rsrc.next_cart_id = max_cart_id + 1;
+
     rsrc.about_us_description = persist.readFromDBFile(rsrc.about_us_db_path);
     rsrc.contact_us_description = persist.readFromDBFile(rsrc.contact_us_db_path);
     rsrc.reviews = JSON.parse(persist.readFromDBFile(rsrc.reviews_db_path));

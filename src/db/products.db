@@ -160,5 +160,14 @@
     "price": "739.90",
     "brand": "Nike",
     "type": "Men's Dri-FIT Authentic Jersey"
+  },
+  {
+    "id": "d96a11e0-84db-4d0f-bd3a-5c7cb7b95d20",
+    "name": "Test name",
+    "description": "Test description",
+    "pictureUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTu4GiTWhqgztYOLIyyaZgGe0F-ehpcOF881JrVaWU5bgqqQ_KN91v3WHRwr6fyNyJ0NGON9qixiPSWifOj_3IGS2hUrZsBoxWEqManl15dAKE7irll2uioAQ&usqp=CAc",
+    "price": "100",
+    "brand": "Shoes",
+    "type": "Ziv"
   }
 ]

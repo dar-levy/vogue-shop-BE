@@ -14,5 +14,19 @@
     "password": "JDJiJDEwJFZKUnJlUWZ1R1lZZkhvVXNhT0kvOE9lRXVFYWEvYmFkNVV5dzVNUWIyYUNBRXRBYXRtZ2hP",
     "salt": "JDJiJDEwJFZKUnJlUWZ1R1lZZkhvVXNhT0kvOE8=",
     "isAdmin": false
+  },
+  {
+    "username": "ziv.somech@post.idc.ac.il",
+    "name": "Ziv Somech",
+    "password": "JDJiJDEwJHFCaFZKdndlRE1IZy50OHJtQ0xZd3V6MlBnYmpOQzYwLlFoZU9oazhVdkZITlRJbnUxbVBx",
+    "salt": "JDJiJDEwJHFCaFZKdndlRE1IZy50OHJtQ0xZd3U=",
+    "isAdmin": false
+  },
+  {
+    "username": "test@gmail.com",
+    "name": "Testy Test",
+    "password": "JDJiJDEwJHBJOHA1eXJKdk96QVVQb2VqRGRMbXVFb09nSXg1Z0hQcjVPYm9hSTlmbkNBY2l2QWkxeEJL",
+    "salt": "JDJiJDEwJHBJOHA1eXJKdk96QVVQb2VqRGRMbXU=",
+    "isAdmin": false
   }
 ]

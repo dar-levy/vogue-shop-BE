@@ -2,16 +2,19 @@
   {
     "username": "admin",
     "activity_type": "Login",
-    "timestamp": "31/08/2024, 02:05:39",
+    "timestamp": "31/08/2024, 16:36:10",
     "cart": {
       "id": 5000,
       "userID": "admin",
       "items": [
-        null,
-        "1",
-        "4",
-        "1",
-        "1"
+        {
+          "productId": "4",
+          "name": "Club Alumni",
+          "price": "179.90",
+          "pictureUrl": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ced18952-62d2-4b4e-8f15-dfd079a659f2/M+NK+CLUB+ALUMNI+HBR+FT+SHORT.png",
+          "brand": "Nike",
+          "type": "Men's French Terry Shorts"
+        }
       ]
     }
   },
@@ -23,6 +26,43 @@
       "id": 5001,
       "userID": "darlevy",
       "items": []
+    }
+  },
+  {
+    "username": "ziv.somech@post.idc.ac.il",
+    "activity_type": "Login",
+    "timestamp": "31/08/2024, 14:25:14",
+    "cart": {
+      "id": 5001,
+      "userID": "ziv.somech@post.idc.ac.il",
+      "items": []
+    }
+  },
+  {
+    "username": "test@gmail.com",
+    "activity_type": "Added item to cart",
+    "timestamp": "31/08/2024, 16:39:50",
+    "cart": {
+      "id": 5002,
+      "userID": "test@gmail.com",
+      "items": [
+        {
+          "productId": "1",
+          "name": "Flight Heritage",
+          "price": "349.90",
+          "pictureUrl": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/589f5247-aa82-4cae-b154-4812e15a93c3/M+J+FLT+HRTG+DENIM+AOP+TOP.png",
+          "brand": "Jordan",
+          "type": "Men's Denim Top"
+        },
+        {
+          "productId": "3",
+          "name": "Sportswear",
+          "price": "499.90",
+          "pictureUrl": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/13848eea-0863-4c37-b8f8-40c2af3222eb/M+NSW+BREAKING+LND+WR+JKT.png",
+          "brand": "Nike",
+          "type": "Men's Breakdancing Jacket"
+        }
+      ]
     }
   }
 ]
