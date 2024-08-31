@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+</head>
+<body>
+  <h1>Register</h1>
+  <form id="registerForm" action="/register" method="POST" onsubmit="return validateForm()">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <p id="emailHelp" style="color: red; font-size: 0.9em;"></p>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <p id="passwordHelp" style="color: red; font-size: 0.9em;"></p>
+    </div>
+    <div>
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" name="confirmPassword" required>
+      <p id="confirmPasswordHelp" style="color: red; font-size: 0.9em;"></p>
+    </div>
+    <button type="submit">Register</button>
+    <p id="error" style="color: red;"></p>
+  </form>
+  <script>
+    function validateEmail(email) {
+      const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      return emailPattern.test(email);
+    }
+
+    function validatePasswordStrength(password) {
+      const minLength = 8;
+      const hasLowercase = /[a-z]/.test(password);
+      const hasUppercase = /[A-Z]/.test(password);
+      const hasNumber = /\d/.test(password);
+      
+      return password.length >= minLength && hasLowercase && hasUppercase && hasNumber;
+    }
+
+    function validateForm() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      // Check email format
+      if (!validateEmail(email)) {
+        document.getElementById('emailHelp').innerText = 'Please enter a valid email address.';
+        return false;
+      } else {
+        document.getElementById('emailHelp').innerText = '';
+      }
+
+      // Check password strength
+      if (!validatePasswordStrength(password)) {
+        document.getElementById('passwordHelp').innerText = 
+          'Password must be at least 8 characters long, with at least one lowercase letter, one uppercase letter, and one number.';
+        return false;
+      } else {
+        document.getElementById('passwordHelp').innerText = '';
+      }
+
+      // Check if passwords match
+      if (password !== confirmPassword) {
+        document.getElementById('confirmPasswordHelp').innerText = 'Passwords do not match.';
+        return false;
+      } else {
+        document.getElementById('confirmPasswordHelp').innerText = '';
+      }
+
+      return true;
+    }
+
+    // Display error message if present
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('error')) {
+      document.getElementById('error').innerText = params.get('error');
+    }
+  </script>
+</body>
+</html>

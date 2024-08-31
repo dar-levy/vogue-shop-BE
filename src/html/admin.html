@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 1px solid black;
+      z-index: 1000;
+      max-width: 90%; /* Constrain modal width */
+      max-height: 90%; /* Constrain modal height */
+      overflow-y: auto; /* Allow vertical scrolling if content exceeds modal height */
+      flex-direction: column;
+      align-items: center; /* Center align all children horizontally */
+      text-align: center; /* Center align text */
+    }
+    .modal img {
+      max-width: 100%; /* Image scales to fit modal width */
+      max-height: 80vh; /* Image scales to fit within 80% of the viewport height */
+      display: block;
+      margin: 20px 0; /* Add space above and below the image */
+    }
+    .modal button {
+      margin-top: 20px; /* Add space above the close button */
+    }
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 500;
+    }
+  </style>
+</head>
+<body>
+  <h1>Admin Page</h1>
+  <button id="loadActivityBtn">Load Users Activity</button>
+  <button id="viewProductsBtn">View Products</button>
+  <button id="addProductBtn">Add Product</button>
+
+  <table id="activityTable" border="1" style="margin-top: 20px; display: none;">
+    <thead>
+      <tr id="tableHeaderRow">
+        <!-- Dynamic headers will be inserted here -->
+      </tr>
+    </thead>
+    <tbody>
+      <!-- User activity rows will be inserted here -->
+    </tbody>
+  </table>
+
+  <table id="productsTable" border="1" style="margin-top: 20px; display: none;">
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Title</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Product rows will be inserted here -->
+    </tbody>
+  </table>
+
+  <div id="productModal" class="modal">
+    <h3 id="modalTitle"></h3>
+    <p id="modalDescription"></p>
+    <img id="modalImage" src="" alt="Product Image">
+    <button onclick="closeModal()">Close</button>
+  </div>
+
+  <div id="addProductModal" class="modal">
+    <h3>Add New Product</h3>
+    <form id="addProductForm" enctype="multipart/form-data">
+      <label for="productTitle">Title:</label><br>
+      <input type="text" id="productTitle" name="title" required><br><br>
+      <label for="productDescription">Description:</label><br>
+      <textarea id="productDescription" name="description" required></textarea><br><br>
+      <label for="productImage">Image:</label><br>
+      <input type="file" id="productImage" name="image" accept="image/*" required><br><br>
+      <button type="submit">Add Product</button>
+      <button type="button" onclick="closeAddProductModal()">Cancel</button>
+    </form>
+  </div>
+
+  <div id="modalOverlay" class="modal-overlay"></div>
+
+  <script>
+    document.getElementById('loadActivityBtn').addEventListener('click', function() {
+      fetch('/admin/activity')
+        .then(response => response.json())
+        .then(data => {
+          const tableHeaderRow = document.getElementById('tableHeaderRow');
+          const tableBody = document.querySelector('#activityTable tbody');
+          tableBody.innerHTML = ''; // Clear any existing rows
+
+          const headers = Object.keys(data[0]);
+          tableHeaderRow.innerHTML = headers.map(header => `<th>${formatHeader(header)}</th>`).join('');
+
+          data.forEach(activity => {
+            const row = document.createElement('tr');
+            row.innerHTML = headers.map(header => {
+              const value = Array.isArray(activity[header]) ? activity[header].join('<br>') : activity[header];
+              return `<td>${value}</td>`;
+            }).join('');
+            tableBody.appendChild(row);
+          });
+
+          document.getElementById('activityTable').style.display = 'table';
+        })
+        .catch(error => console.error('Error loading activity data:', error));
+    });
+
+    document.getElementById('viewProductsBtn').addEventListener('click', function() {
+      fetch('/admin/products')
+        .then(response => response.json())
+        .then(data => {
+          const productsTableBody = document.querySelector('#productsTable tbody');
+          productsTableBody.innerHTML = ''; // Clear existing rows
+
+          data.forEach(product => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${product.product_id}</td>
+              <td>${product.title}</td>
+              <td>
+                <a href="#" onclick="viewProduct(${product.product_id})">View</a> |
+                <a href="#" onclick="removeProduct(${product.product_id})">Remove</a>
+              </td>
+            `;
+            productsTableBody.appendChild(row);
+          });
+
+          document.getElementById('productsTable').style.display = 'table';
+        })
+        .catch(error => console.error('Error loading product data:', error));
+    });
+
+    document.getElementById('addProductBtn').addEventListener('click', function() {
+      openAddProductModal();
+    });
+
+    document.getElementById('addProductForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form from submitting normally
+
+      const formData = new FormData(this); // Create a FormData object from the form
+
+      fetch('/admin/products', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        closeAddProductModal();
+        document.getElementById('viewProductsBtn').click(); // Refresh product list
+      })
+      .catch(error => console.error('Error adding product:', error));
+    });
+
+    function viewProduct(productId) {
+      fetch('/admin/products')
+        .then(response => response.json())
+        .then(products => {
+          const product = products.find(p => p.product_id === productId);
+          if (product) {
+            document.getElementById('modalTitle').innerText = product.title;
+            document.getElementById('modalDescription').innerText = product.description;
+            document.getElementById('modalImage').src = product.image_path;
+            document.getElementById('productModal').style.display = 'block';
+            document.getElementById('modalOverlay').style.display = 'block';
+          }
+        })
+        .catch(error => console.error('Error loading product details:', error));
+    }
+
+    function removeProduct(productId) {
+      fetch(`/admin/products/${productId}`, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        document.getElementById('viewProductsBtn').click(); // Refresh product list
+      })
+      .catch(error => console.error('Error removing product:', error));
+    }
+
+    function openAddProductModal() {
+      document.getElementById('addProductModal').style.display = 'block';
+      document.getElementById('modalOverlay').style.display = 'block';
+    }
+
+    function closeAddProductModal() {
+      document.getElementById('addProductModal').style.display = 'none';
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+
+    function closeModal() {
+      document.getElementById('productModal').style.display = 'none';
+      document.getElementById('modalOverlay').style.display = 'none';
+    }
+
+    function formatHeader(header) {
+      return header
+        .split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+    }
+  </script>
+</body>
+</html>
