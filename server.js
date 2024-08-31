@@ -250,7 +250,7 @@ app.post('/api/login', async (req, res) => {
     return res.json({name: user.name, email: user.email, isAdmin: user.isAdmin});
 });
 
-app.get('/api/logout', (req, res) => {
+app.post('/api/logout', (req, res) => {
 
     let vogue_user_cookie = req.cookies['vogue-user'];
     let user_data = null;
