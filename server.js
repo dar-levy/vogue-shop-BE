@@ -210,14 +210,13 @@ app.delete('/api/products/:product_id', checkAdmin, (req, res) => {
 
 app.post('/api/register', async (req, res) => {
 
-    //console.log("/api/register");
     const { name, email, password } = req.body;
   
     // Check if the user already exists
     let username = email;
     let existingUser = rsrc.users_credentials_info.find(u => u.username === username);
     if (existingUser) {
-        console.log("user already exists")
+        
         return res.status(400).send('user already registered');
     }
   
@@ -241,7 +240,7 @@ app.post('/api/login', async (req, res) => {
         return res.status(400).send('Invalid username or password');
     }
 
-    //console.log("New Login Successful!");
+    
     let user = rsrc.users_credentials_info.find(u => u.username === username);
 
     const max_age = rememberMe ? 10 * 24 * 60 * 60 * 1000 : 30 * 60 * 1000; // 10 days or 30 minutes
@@ -262,7 +261,7 @@ app.get('/api/logout', (req, res) => {
     else {
         return res.status(404).send("Could not find cookie in the request");
     }
-        
+
     activity.updateUserActivity(user_data.username, "Logout");
 
     res.clearCookie('vogue-user');
