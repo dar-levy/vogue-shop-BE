@@ -253,6 +253,18 @@ app.post('/api/login', async (req, res) => {
 
 app.get('/api/logout', (req, res) => {
 
+    let vogue_user_cookie = req.cookies['vogue-user'];
+    let user_data = null;
+
+    if (vogue_user_cookie) {
+        user_data = JSON.parse(vogue_user_cookie);
+    }
+    else {
+        return res.status(404).send("Could not find cookie in the request");
+    }
+        
+    activity.updateUserActivity(user_data.username, "Logout");
+
     res.clearCookie('vogue-user');
 
     res.status(200).send('Successfully logged out');
