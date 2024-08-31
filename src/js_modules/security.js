@@ -13,7 +13,7 @@ async function hashPassword(user_password) {
 
     //let salt = bcrypt.genSaltSync(salt_rounds);
     let salt = await bcrypt.genSalt(salt_rounds);
-    //console.log(salt);
+    
 
     // let hashed_pass = bcrypt.hash(user_password, salt, (err, hash) => {
     //     if (err) {
@@ -21,13 +21,12 @@ async function hashPassword(user_password) {
     //         return null;
     //     }
 
-    //     console.log('Hashed password:', hash);
     //     return hash;
     // });
 
     //let hashed_pass = await bcrypt.hash(user_password, salt);
     let hashed_pass = await bcrypt.hash(user_password, salt);
-    //console.log('Hashed password:', hashed_pass);
+    
     return [hashed_pass, salt];
 }
 

@@ -26,7 +26,7 @@ function updateUserActivity(username, new_activity) {
         rsrc.users_activity_info[index].timestamp = time;
     }
     persist.writeToDBFile(rsrc.users_activity_db_path, rsrc.users_activity_info);
-    console.log(rsrc.users_activity_info);
+    
 
     return index;
 }
@@ -50,7 +50,7 @@ function addToCart(username, product_id) {
     
     rsrc.users_activity_info[index].cart.items.push(basket_item);
     updateUserActivity(username, "Added item to cart");
-    console.log("Added to cart");
+    
     return true;
 }
 
@@ -66,7 +66,7 @@ function removeFromCart(username, product_id) {
 
     rsrc.users_activity_info[index].cart.items.splice(product_index, 1);
     updateUserActivity(username, "Removed item from cart")
-    console.log("Removed from cart");
+    
     return true;
 }
 
