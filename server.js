@@ -41,8 +41,7 @@ app.get('/api/basket', (req, res) => {
     if (vogue_user_cookie) {
         const user_data = JSON.parse(vogue_user_cookie);
 
-        // later, change user_data.name to user_data.username
-        let user = rsrc.users_activity_info.find(u => u.username === user_data.name);
+        let user = rsrc.users_activity_info.find(u => u.username === user_data.username);
         if (user === undefined) {
             return res.status(404).send("Server Error get /basket - Didn't find user in cookie");
         }
@@ -67,14 +66,12 @@ app.post('/api/basket/:id', (req, res) => {
         return res.status(404).send("Could not find cookie in the request");
     }
 
-    // later, change user_data.name to user_data.username
-    let index = rsrc.users_activity_info.findIndex(u => u.username === user_data.name);
+    let index = rsrc.users_activity_info.findIndex(u => u.username === user_data.username);
     if (index == -1) {
         return res.status(404).send("Server Error post /basket - Didn't find user in cookie");
     }
 
-    // later, change user_data.name to user_data.username
-    if (!activity.addToCart(user_data.name, product_id)) {
+    if (!activity.addToCart(user_data.username, product_id)) {
         return res.status(500).send("Server Error post /basket - Couldn't add product");
     }
     return res.json(rsrc.users_activity_info[index].cart);
@@ -95,14 +92,12 @@ app.delete('/api/basket/:id', (req, res) => {
         return res.status(404).send("Could not find cookie in the request");
     }
 
-    // later, change user_data.name to user_data.username
-    let index = rsrc.users_activity_info.findIndex(u => u.username === user_data.name);
+    let index = rsrc.users_activity_info.findIndex(u => u.username === user_data.username);
     if (index == -1) {
         return res.status(404).send("Server Error post /basket - Didn't find user in cookie");
     }
 
-    // later, change user_data.name to user_data.username
-    if (!activity.removeFromCart(user_data.name, product_id)) {
+    if (!activity.removeFromCart(user_data.username, product_id)) {
         return res.status(500).send("Server Error post /basket - Couldn't remove product");
     }
     return res.json(rsrc.users_activity_info[index].cart);
@@ -111,7 +106,6 @@ app.delete('/api/basket/:id', (req, res) => {
 // Removes all products from the cart
 app.delete('/api/basket', (req, res) => {
 
-    //let { product_id, quantity } = req.body;
 
     let vogue_user_cookie = req.cookies['vogue-user'];
     let user_data = null;
@@ -123,14 +117,12 @@ app.delete('/api/basket', (req, res) => {
         return res.status(404).send("Could not find cookie in the request");
     }
 
-    // later, change user_data.name to user_data.username
-    let index = rsrc.users_activity_info.findIndex(u => u.username === user_data.name);
+    let index = rsrc.users_activity_info.findIndex(u => u.username === user_data.username);
     if (index == -1) {
         return res.status(404).send("The profile with the given ID was not found");
     }
 
-    // later, change user_data.name to user_data.username
-    if (!activity.clearCart(user_data.name)) {
+    if (!activity.clearCart(user_data.username)) {
         return res.status(500).send("Server Error post /basket - Couldn't clear cart");
     }
     return res.json(rsrc.users_activity_info[index].cart);
@@ -160,7 +152,7 @@ function checkAdmin(req, res, next) {
             res.status(403).send('Access denied');
         }
     } else {
-        res.status(403).send('Corrupted Cookie');
+        res.status(403).send('Could not find cookie in the request');
   }
 }
 
@@ -233,8 +225,7 @@ app.post('/api/register', async (req, res) => {
     let user = await register.createNewUser(username, name, password);
   
     // Set a cookie
-    // later, add username field and change name value to user.name
-    let cookie_data = JSON.stringify({ name: username, isAdmin: user.isAdmin });
+    let cookie_data = JSON.stringify({ username: user.username, name: user.name, isAdmin: user.isAdmin });
     res.cookie('vogue-user', cookie_data, { maxAge: 30 * 60 * 1000}); // 30 minutes
 
     res.json({name: user.name, email: user.username, isAdmin: user.isAdmin});
@@ -254,7 +245,7 @@ app.post('/api/login', async (req, res) => {
     let user = rsrc.users_credentials_info.find(u => u.username === username);
 
     const max_age = rememberMe ? 10 * 24 * 60 * 60 * 1000 : 30 * 60 * 1000; // 10 days or 30 minutes
-    let cookie_data = JSON.stringify({ name: username, isAdmin: user.isAdmin });
+    let cookie_data = JSON.stringify({ username: user.username, name: user.name, isAdmin: user.isAdmin });
     res.cookie('vogue-user', cookie_data, {max_age});
 
     return res.json({name: user.name, email: user.email, isAdmin: user.isAdmin});
