@@ -1,19 +1,19 @@
 [
   {
     "username": "admin",
-    "activity_type": "Removed item from cart",
-    "timestamp": "31/08/2024, 19:23:35",
+    "activity_type": "Login",
+    "timestamp": "31/08/2024, 22:24:08",
     "cart": {
       "id": 5000,
       "userID": "admin",
       "items": [
         {
-          "productId": "2",
-          "name": "Brooklyn Fleece",
-          "price": "199.90",
-          "pictureUrl": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/4a1675fe-847e-4307-babf-a4a307b953a6/M+J+ESS+FLC+PANT.png",
-          "brand": "Jordan",
-          "type": "Men's Trousers"
+          "productId": "4",
+          "name": "Club Alumni",
+          "price": "179.90",
+          "pictureUrl": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ced18952-62d2-4b4e-8f15-dfd079a659f2/M+NK+CLUB+ALUMNI+HBR+FT+SHORT.png",
+          "brand": "Nike",
+          "type": "Men's French Terry Shorts"
         }
       ]
     }

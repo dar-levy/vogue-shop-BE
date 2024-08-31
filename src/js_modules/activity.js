@@ -76,8 +76,17 @@ function clearCart(username) {
         return false;
     }
 
-    rsrc.users_activity_info[index].cart.forEach(bi => {
-        removeFromCart(username, bi.productId);
+    // We need to first take all the product ids and then remove it, so we don't read and write to the
+    // same buffer and cause bugs
+    let p_ids = [];
+    rsrc.users_activity_info[index].cart.items.forEach(bi => {
+        
+        p_ids.push(bi.productId);
+    });
+
+    p_ids.forEach(p_id => {
+
+        removeFromCart(username, p_id);
     });
 
     return true;
