@@ -21,7 +21,8 @@ async function createDefaultUsersDB(db_path) {
 
 function createDefaultActivityDB(db_path) {
 
-    let default_db = [{username: "admin", activity_type: "Login", timestamp: new Date().getTime(),
+    let default_db = [{username: "admin", activity_type: "Login",
+        timestamp: new Date().toLocaleString("en-GB", {timeZone: "Asia/Jerusalem"}),
         cart: {id : 5000, userID: "admin", items: []}}];
     persist.writeToDBFile(db_path, default_db);
     return default_db;
@@ -55,7 +56,6 @@ async function loadDBs() {
         rsrc.next_product_id = rsrc.products_list[rsrc.products_list.length - 1];
     }
 
-    // find the max cart_id in the rsrc.users_activity_info and set the next_cart_id to it
     let max_cart_id = 0;
     rsrc.users_activity_info.forEach((user) => {
         if (max_cart_id < user.cart.id) {
