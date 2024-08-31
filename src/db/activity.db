@@ -1,8 +1,8 @@
 [
   {
     "username": "admin",
-    "activity_type": "Removed item from cart",
-    "timestamp": "31/08/2024, 19:23:35",
+    "activity_type": "Login",
+    "timestamp": "31/08/2024, 20:26:17",
     "cart": {
       "id": 5000,
       "userID": "admin",
@@ -20,8 +20,8 @@
   },
   {
     "username": "darlevy",
-    "activity_type": "Login",
-    "timestamp": "31/08/2024, 02:06:28",
+    "activity_type": "Logout",
+    "timestamp": "31/08/2024, 20:26:14",
     "cart": {
       "id": 5001,
       "userID": "darlevy",
