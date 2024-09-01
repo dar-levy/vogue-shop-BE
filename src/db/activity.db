@@ -2,26 +2,17 @@
   {
     "username": "admin",
     "activity_type": "Removed item from cart",
-    "timestamp": "31/08/2024, 19:23:35",
+    "timestamp": "01/09/2024, 12:01:08",
     "cart": {
       "id": 5000,
       "userID": "admin",
-      "items": [
-        {
-          "productId": "4",
-          "name": "Club Alumni",
-          "price": "179.90",
-          "pictureUrl": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/ced18952-62d2-4b4e-8f15-dfd079a659f2/M+NK+CLUB+ALUMNI+HBR+FT+SHORT.png",
-          "brand": "Nike",
-          "type": "Men's French Terry Shorts"
-        }
-      ]
+      "items": []
     }
   },
   {
     "username": "darlevy",
     "activity_type": "Logout",
-    "timestamp": "31/08/2024, 20:26:14",
+    "timestamp": "01/09/2024, 11:48:58",
     "cart": {
       "id": 5001,
       "userID": "darlevy",
@@ -63,6 +54,16 @@
           "type": "Men's Breakdancing Jacket"
         }
       ]
+    }
+  },
+  {
+    "username": "elonmusk@x.com",
+    "activity_type": "Logout",
+    "timestamp": "01/09/2024, 11:49:52",
+    "cart": {
+      "id": 5003,
+      "userID": "elonmusk@x.com",
+      "items": []
     }
   }
 ]

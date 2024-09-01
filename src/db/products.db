@@ -162,12 +162,12 @@
     "type": "Men's Dri-FIT Authentic Jersey"
   },
   {
-    "id": "d96a11e0-84db-4d0f-bd3a-5c7cb7b95d20",
-    "name": "Test name",
-    "description": "Test description",
-    "pictureUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTu4GiTWhqgztYOLIyyaZgGe0F-ehpcOF881JrVaWU5bgqqQ_KN91v3WHRwr6fyNyJ0NGON9qixiPSWifOj_3IGS2hUrZsBoxWEqManl15dAKE7irll2uioAQ&usqp=CAc",
-    "price": "100",
-    "brand": "Shoes",
-    "type": "Ziv"
+    "id": "c2eeea86-c606-4831-8fe4-836f36bbca31",
+    "name": "Sport",
+    "description": "Men's Golf Jacket",
+    "pictureUrl": "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/bb877b6c-06db-4530-af85-9cdf164de6c7/M+J+SPRT+GLF+STMT+JACKET.png",
+    "price": "329.90",
+    "brand": "Jordan",
+    "type": "Men's Golf Jacket"
   }
 ]

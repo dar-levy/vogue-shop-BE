@@ -28,5 +28,12 @@
     "password": "JDJiJDEwJHBJOHA1eXJKdk96QVVQb2VqRGRMbXVFb09nSXg1Z0hQcjVPYm9hSTlmbkNBY2l2QWkxeEJL",
     "salt": "JDJiJDEwJHBJOHA1eXJKdk96QVVQb2VqRGRMbXU=",
     "isAdmin": false
+  },
+  {
+    "username": "elonmusk@x.com",
+    "name": "Elon",
+    "password": "JDJiJDEwJHVFaGs2UE81Mzc5VC9SLjguOGkzWmVWL0phR0dGR3J5RFVCZnNSNUwzTEJRY1VleTN1S1Rt",
+    "salt": "JDJiJDEwJHVFaGs2UE81Mzc5VC9SLjguOGkzWmU=",
+    "isAdmin": false
   }
 ]
