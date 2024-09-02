@@ -128,18 +128,6 @@ app.delete('/api/basket', (req, res) => {
     return res.json(rsrc.users_activity_info[index].cart);
 });
 
-// Ask about this one
-// app.delete('/basket', (req, res) => {
-
-//     let index = rsrc.users_activity_info.findIndex(u => u.username === req.cookies.username);
-//     if (index == -1) {
-//         return res.status(404).send("The profile with the given ID was not found");
-//     }
-
-//     activity.clearCart(req.cookies.username);
-//     return res.json(rsrc.users_activity_info[index].cart);
-// });
-
 function checkAdmin(req, res, next) {
 
     let vogue_user_cookie = req.cookies['vogue-user'];
@@ -168,9 +156,7 @@ app.get('/api/products', (req, res) => {
 
 app.get('/api/products/:product_id', (req, res) => {
 
-    //let {product_id} = req.body;
     const product_id = req.params.product_id;
-    //if (typeof product_id == "number") {
     let product = rsrc.products_list.find(p => p.id === product_id);
     if (product === undefined) {
         return res.status(404).send("Server Error get /products/:product_id - Couldn't find the specified product");
@@ -194,7 +180,6 @@ app.post('/api/products', checkAdmin, (req, res) => {
 
 app.delete('/api/products/:product_id', checkAdmin, (req, res) => {
 
-    //let {product_id} = req.body;
     const product_id = req.params.product_id;
     if (product_id === undefined) {
         return res.status(404).send('Server Error delete /products/:product_id - Bad product id');

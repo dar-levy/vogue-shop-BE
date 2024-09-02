@@ -68,7 +68,6 @@ async function loadDBs() {
     rsrc.contact_us_description = persist.readFromDBFile(rsrc.contact_us_db_path);
     rsrc.reviews = JSON.parse(persist.readFromDBFile(rsrc.reviews_db_path));
     rsrc.new_arrivals = JSON.parse(persist.readFromDBFile(rsrc.new_arrivals_db_path));
-    //console.log(rsrc.users_credentials_info);
 
 }
 
