@@ -1,1 +1,1 @@
-# vogue-shop-BE
+# vogue-shop-server
